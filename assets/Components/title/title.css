@@ -1,0 +1,23 @@
+ /* .head .body_header .right_part button:hover, button:focus, button:active,button {
+    background-color: #ff851a;
+    border: 1px solid #ff851a;
+    color: #fff;
+} */
+ /* div.centre .left_part .sub_theme{
+    display: flex;
+} */
+ div.centre .left_part .sub_theme .body_header {
+     display: flex;
+     justify-content: space-between;
+ }
+ div.centre .left_part .sub_theme .body_header .right_part button a,
+ div.centre .left_part .sub_theme .body_header .right_part button
+ {
+    font-family: 'Montserrat';
+    color: white;
+    font-weight: 500;
+    margin: 0;
+    padding: 10px;
+    border-radius: 150px;
+    background-color: #ff851a;
+}

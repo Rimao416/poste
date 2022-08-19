@@ -1,0 +1,80 @@
+
+/*CARD USER*/
+ .card_user{
+    text-align: center;
+    padding: 10px;
+    margin-top: 1%;
+    width: 280px;
+    height: 200px;
+    background-color: #fff;
+    border: 1px solid #ededed;
+    border-radius: 4px;
+    display: inline-block;
+    text-align: center;
+    position: relative;  
+    box-shadow: 0 1px 1px #0003;
+    overflow: hidden;
+}
+.card_user .profile_user{
+    width: 100px;
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+}
+.card_user .profile_user img{
+    border-radius: 150px;
+}
+.card_user .user_details{
+  position: absolute;
+  text-align: center;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%,-50%);
+}
+.card_user .user_details .card h4{
+    font-weight: 500;
+}
+.card_user .user_details .card h5{
+    color: gray;
+    font-weight: 400;
+}
+/*
+.card_user .profile_user{
+    margin-top: 5%;
+    margin-bottom: 10px;
+    transition: .5s ease-in-out;
+}
+
+.card_user.active .profile_user{
+    filter: blur(30px);
+}
+.card_user  .dot{
+    position: absolute;
+    top: 0;
+    text-align: left;
+    left: 90%;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: .3s ease;
+}
+.card_user .dot:hover{
+    color: blue;
+}
+
+
+.card_user img{
+    text-align: center;
+    position: relative;
+    top: 0;
+    width: 40%;
+    border-radius: 50%;
+}
+.user_details h5{
+    color: #333;
+    font-weight: 400;
+}
+.user_details h4{
+    font-family: Poppins;
+    font-weight: 600;
+} */
+/*SUB OPERATIONS CLASSES*/

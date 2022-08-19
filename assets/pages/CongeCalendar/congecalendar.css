@@ -1,0 +1,48 @@
+.rbc-header{
+    overflow: hidden;
+    flex: 1 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 3px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 90%;
+    min-height: 0;
+    border-bottom: 1px solid #DDD;
+}
+.rbc-header + .rbc-header {
+    border-left: 1px solid #DDD;
+}
+.rbc-calendar *, .rbc-calendar *:before, .rbc-calendar *:after {
+    box-sizing: inherit;
+}
+.rbc-month-view {
+    position: relative;
+    border: 1px solid #DDD;
+    display: flex;
+    flex-direction: column;
+    flex: 1 0;
+    width: 100%;
+    user-select: none;
+    -webkit-user-select: none;
+    height: 100%;
+}
+.rbc-date-cell {
+    flex: 1 1;
+    min-width: 0;
+    padding-right: 5px;
+    text-align: right;
+}
+.rbc-off-range {
+    color: #999999;
+}
+.rbc-calendar *, .rbc-calendar *:before, .rbc-calendar *:after {
+    box-sizing: inherit;
+}
+.rbc-row-content {
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    z-index: 4;
+}
