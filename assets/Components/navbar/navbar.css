@@ -1,0 +1,9 @@
+.navbar{
+    background-color: white;
+    padding:12px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+

@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const List = ({ classname, link, goTo }) => {
+const List = ({link, goTo }) => {
   return (
     <>
       <Link to={goTo} className="link">
-        <li className={classname}>{link}</li>
+        <li>{link}</li>
       </Link>
     </>
   );

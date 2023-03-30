@@ -43,13 +43,13 @@ class User implements UserInterface
      * 
      * @Assert\Email(message="Le mail est incorrecte")
      * @Assert\NotBlank(message="Le champ mail doit être remplie")
-     * @Groups({"users_read","postes_read","conges_read","pointage_read"})
+     * @Groups({"users_read","postes_read","conges_read","pointage_read","projets_read"})
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
-     * @Groups({"users_read","postes_read","conges_read"})
+     * @Groups({"users_read","postes_read","conges_read","projets_read"})
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -63,23 +63,18 @@ class User implements UserInterface
 
     /**
      * @Assert\NotBlank(message="Le nom ne doit pas être vide")
-     * @Groups({"users_read","postes_read","conges_read","pointage_read","contrat_read"})
+     * @Groups({"users_read","postes_read","conges_read","pointage_read","contrat_read","projets_read"})
      * @ORM\Column(type="string", length=255)
      */
     private $firstName;
 
     /**
      * @Assert\NotBlank(message="Le prenom ne doit pas être vide")
-     * @Groups({"users_read","postes_read","conges_read","pointage_read","contrat_read"})
+     * @Groups({"users_read","postes_read","conges_read","pointage_read","contrat_read","projets_read"})
      * @ORM\Column(type="string", length=255)
      */
     private $lastName;
 
-    /**
-     * @Groups({"users_read","postes_read","conges_read","pointage_read","contrat_read"})
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $photo;
 
     /**
      * @Assert\NotBlank(message="L'adresse ne doit pas être vide")
@@ -88,73 +83,12 @@ class User implements UserInterface
      */
     private $adresse;
 
- 
-
-    /**
-     * @Groups({"users_read","conges_read","pointage_read","contrat_read"})
-     * @ORM\ManyToOne(targetEntity=Poste::class, inversedBy="users")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $poste;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Pointage::class, mappedBy="user")
-     */
-    private $pointages;
-
-
-
-    
-    /**
-     * @ORM\Column(type="integer",nullable=true,unique=true)
-     * @Groups({"users_read","postes_read"})
-     */
-    private $matricule;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Pointage::class, mappedBy="auteur")
-     */
-    private $pointes;
-
-    /**
-     * @ApiSubresource
-     * @ORM\OneToMany(targetEntity=Conge::class, mappedBy="user")
-     */
-    private $conges;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Notification::class, mappedBy="user")
-     */
-    private $notifications;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Enregistrement::class, mappedBy="matricule")
-     */
-    private $enregistrements;
 
     /**
      * @Groups({"users_read","postes_read","conges_read","pointage_read"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $sexe;
-
-    /**
-     * @Groups({"users_read","postes_read","conges_read","pointage_read"})
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $cin;
-
-    /**
-     * @Groups({"users_read","postes_read","conges_read","pointage_read"})
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $statut;
-
-    /**
-     * @Groups({"users_read","postes_read","conges_read","pointage_read"})
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $pays;
 
     /**
      * @Groups({"users_read","postes_read","conges_read","pointage_read"})
@@ -170,35 +104,27 @@ class User implements UserInterface
 
     /**
      * @Groups({"users_read","postes_read","conges_read","pointage_read"})
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $enfant;
+    private $photo;
 
     /**
-     * @Groups({"users_read","postes_read","conges_read","pointage_read"})
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\OneToMany(targetEntity=Conge::class, mappedBy="user")
      */
-    private $cree;
+    private $conges;
 
     /**
-     * @ORM\OneToMany(targetEntity=Contrat::class, mappedBy="user")
+     * @ORM\ManyToMany(targetEntity=Projet::class, mappedBy="employe")
      */
-    private $contrats;
-
-
-
+    private $projets;
 
     public function __construct()
     {
-        $this->pointages = new ArrayCollection();
-        $this->pointes = new ArrayCollection();
         $this->conges = new ArrayCollection();
-        $this->notifications = new ArrayCollection();
-        $this->enregistrements = new ArrayCollection();
-        $this->contrats = new ArrayCollection();
-       
-     
+        $this->projets = new ArrayCollection();
     }
+
+
 
     public function getId(): ?int
     {
@@ -305,18 +231,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?string $photo): self
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
+   
     public function getAdresse(): ?string
     {
         return $this->adresse;
@@ -341,86 +256,52 @@ class User implements UserInterface
     //     return $this;
     // }
 
-    public function getPoste(): ?Poste
+
+
+    public function getSexe(): ?string
     {
-        return $this->poste;
+        return $this->sexe;
     }
 
-    public function setPoste(?Poste $poste): self
+    public function setSexe(?string $sexe): self
     {
-        $this->poste = $poste;
+        $this->sexe = $sexe;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Pointage>
-     */
-    public function getPointages(): Collection
+    public function getDateNaissance(): ?\DateTimeInterface
     {
-        return $this->pointages;
+        return $this->dateNaissance;
     }
 
-    public function addPointage(Pointage $pointage): self
+    public function setDateNaissance(?\DateTimeInterface $dateNaissance): self
     {
-        if (!$this->pointages->contains($pointage)) {
-            $this->pointages[] = $pointage;
-            $pointage->setUser($this);
-        }
+        $this->dateNaissance = $dateNaissance;
 
         return $this;
     }
 
-    public function removePointage(Pointage $pointage): self
+    public function getTelephone(): ?string
     {
-        if ($this->pointages->removeElement($pointage)) {
-            // set the owning side to null (unless already changed)
-            if ($pointage->getUser() === $this) {
-                $pointage->setUser(null);
-            }
-        }
+        return $this->telephone;
+    }
+
+    public function setTelephone(?string $telephone): self
+    {
+        $this->telephone = $telephone;
 
         return $this;
     }
 
-    public function getMatricule(): ?int
+    public function getPhoto(): ?string
     {
-        return $this->matricule;
+        return $this->photo;
     }
 
-    public function setMatricule(?int $matricule): self
+    public function setPhoto(?string $photo): self
     {
-        $this->matricule = $matricule;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Pointage>
-     */
-    public function getPointes(): Collection
-    {
-        return $this->pointes;
-    }
-
-    public function addPointe(Pointage $pointe): self
-    {
-        if (!$this->pointes->contains($pointe)) {
-            $this->pointes[] = $pointe;
-            $pointe->setAuteur($this);
-        }
-
-        return $this;
-    }
-
-    public function removePointe(Pointage $pointe): self
-    {
-        if ($this->pointes->removeElement($pointe)) {
-            // set the owning side to null (unless already changed)
-            if ($pointe->getAuteur() === $this) {
-                $pointe->setAuteur(null);
-            }
-        }
+        $this->photo = $photo;
 
         return $this;
     }
@@ -456,192 +337,29 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection<int, Notification>
+     * @return Collection<int, Projet>
      */
-    public function getNotifications(): Collection
+    public function getProjets(): Collection
     {
-        return $this->notifications;
+        return $this->projets;
     }
 
-    public function addNotification(Notification $notification): self
+    public function addProjet(Projet $projet): self
     {
-        if (!$this->notifications->contains($notification)) {
-            $this->notifications[] = $notification;
-            $notification->setUser($this);
+        if (!$this->projets->contains($projet)) {
+            $this->projets[] = $projet;
+            $projet->addEmploye($this);
         }
 
         return $this;
     }
 
-    public function removeNotification(Notification $notification): self
+    public function removeProjet(Projet $projet): self
     {
-        if ($this->notifications->removeElement($notification)) {
-            // set the owning side to null (unless already changed)
-            if ($notification->getUser() === $this) {
-                $notification->setUser(null);
-            }
+        if ($this->projets->removeElement($projet)) {
+            $projet->removeEmploye($this);
         }
 
         return $this;
     }
-
-    /**
-     * @return Collection<int, Enregistrement>
-     */
-    public function getEnregistrements(): Collection
-    {
-        return $this->enregistrements;
-    }
-
-    public function addEnregistrement(Enregistrement $enregistrement): self
-    {
-        if (!$this->enregistrements->contains($enregistrement)) {
-            $this->enregistrements[] = $enregistrement;
-            $enregistrement->setMatricule($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEnregistrement(Enregistrement $enregistrement): self
-    {
-        if ($this->enregistrements->removeElement($enregistrement)) {
-            // set the owning side to null (unless already changed)
-            if ($enregistrement->getMatricule() === $this) {
-                $enregistrement->setMatricule(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getSexe(): ?string
-    {
-        return $this->sexe;
-    }
-
-    public function setSexe(?string $sexe): self
-    {
-        $this->sexe = $sexe;
-
-        return $this;
-    }
-
-    public function getCin(): ?string
-    {
-        return $this->cin;
-    }
-
-    public function setCin(?string $cin): self
-    {
-        $this->cin = $cin;
-
-        return $this;
-    }
-
-    public function getStatut(): ?string
-    {
-        return $this->statut;
-    }
-
-    public function setStatut(?string $statut): self
-    {
-        $this->statut = $statut;
-
-        return $this;
-    }
-
-    public function getPays(): ?string
-    {
-        return $this->pays;
-    }
-
-    public function setPays(?string $pays): self
-    {
-        $this->pays = $pays;
-
-        return $this;
-    }
-
-    public function getDateNaissance(): ?\DateTimeInterface
-    {
-        return $this->dateNaissance;
-    }
-
-    public function setDateNaissance(?\DateTimeInterface $dateNaissance): self
-    {
-        $this->dateNaissance = $dateNaissance;
-
-        return $this;
-    }
-
-    public function getTelephone(): ?string
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(?string $telephone): self
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
-    public function getEnfant(): ?int
-    {
-        return $this->enfant;
-    }
-
-    public function setEnfant(?int $enfant): self
-    {
-        $this->enfant = $enfant;
-
-        return $this;
-    }
-
-    public function getCree(): ?\DateTimeInterface
-    {
-        return $this->cree;
-    }
-
-    public function setCree(?\DateTimeInterface $cree): self
-    {
-        $this->cree = $cree;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Contrat>
-     */
-    public function getContrats(): Collection
-    {
-        return $this->contrats;
-    }
-
-    public function addContrat(Contrat $contrat): self
-    {
-        if (!$this->contrats->contains($contrat)) {
-            $this->contrats[] = $contrat;
-            $contrat->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeContrat(Contrat $contrat): self
-    {
-        if ($this->contrats->removeElement($contrat)) {
-            // set the owning side to null (unless already changed)
-            if ($contrat->getUser() === $this) {
-                $contrat->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-
-
-
 }

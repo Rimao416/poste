@@ -1,5 +1,6 @@
-export const API_URL=process.env.API_URL
-// const API_URL='http://localhost:8000/api/'
+
+// export const API_URL=process.env.API_URL
+export const API_URL='http://localhost:8000/api/'
 export const DEPARTEMENTS_API=API_URL+'departements'
 export const EMPLOYES_API=API_URL+'users'
 export const TELETRAVAIL_API=API_URL+'pointages'
@@ -11,4 +12,5 @@ export const JOUR_API=API_URL+'jours'
 export const CONTRATS_API=API_URL+'type_contrats'
 export const CONTRATS_USER_API=API_URL+'contrats'
 export const CONGES_API=API_URL+'conges'
+export const PROJETS_API=API_URL+'projets'
 export const SALAIRES_API=API_URL+'salaires'

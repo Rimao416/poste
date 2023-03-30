@@ -1,0 +1,27 @@
+.headers{
+    display: flex;
+    justify-content: space-between;
+}
+
+.headers button{
+    background-color: var(--second-color);
+    outline: none;
+    border: none;
+    font-family: "Inter";
+    padding: 10px;
+    color: var(--police-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.headers button:active{
+    transform: scale(.9);
+}
+
+
+.headers h4{
+    color: var(--police-color);
+    font-weight: bold;
+    font-size: 20px;
+}

@@ -1,8 +1,8 @@
-
 .modal {
     position: absolute;
     top: 50%;
     left: 50%;
+    background-color: rebeccapurple;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
@@ -68,42 +68,59 @@
 .modal .formulaire{
     /*Grand format ici*/
     width: 800px;
+    font-family: "Gotham";
 }
 .modal .form-grap{
     display: flex;
+    justify-content: space-between;
 }
 .modal .form-group{
+    /* margin-right: 3%;
+    margin-bottom: 2%; */
+}
+.modal .form-group label{
+    font-family: "Inter";
+    font-size: 16px;
+}
+.modal .form-group input, .modal .form-group select{
     width: 100%;
-    margin-right: 3%;
-    margin-bottom: 2%;
-}
-.modal textarea, .modal textarea:focus, .modal textarea:checked{
-    width: 100%;
-    font-family: Roboto;
-    font-size: 15px;
-    font-style: italic;
-    border: 1px solid gray;
-}
-/* NE CONCERNE QUE LA PARTIE DEMANDE DE TRAVAIL */
-.modal .header{
-    text-align: center;
-}
-.modal .body .flex-dialog{
-    display: flex;
-    justify-content: space-between;
+    padding: 8px 14.4px;
     margin-top: 2%;
-    padding: 2px 2px;
+    border: 1px solid #e6e6e6;
 }
-.modal .body .flex-dialog h6{
-    font-weight: 500;
+.modal .form-group input:focus{
+    outline: none;
 }
-.modal .header img{
-    border-radius: 150px;
+.modal button{
+    margin-top: 2%;
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 13px;
+    font-family: "Inter";
+    font-weight: 400;
+    background-color: var(--main-color);
+    color: white;
+    transition: .5s;
 }
-.modal .header h5{
-    font-weight: 500;
+.modal button:hover{
+    cursor: pointer;
 }
-.modal .button-control{
-    display: flex;
-    justify-content: space-around;
+.modal button:active{
+    transform: scale(.5);
+}
+#monTextarea{
+    margin-top: 1%;
+    resize: none;
+    border: 1px solid var(--main-color);  
+    padding: 2%;  
+    outline: none;
+}
+
+.modal-body.demande .body{
+    margin-top: 4%;
+}
+.modal-body.demande .demande .body .flex-dialog + h6{
+    font-size: 15px;
+    background-color: red;
 }

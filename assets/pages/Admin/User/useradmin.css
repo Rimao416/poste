@@ -1,0 +1,26 @@
+td.actions_users {
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.actions_users button{
+    border: none;
+    outline: none;
+    display:inline-block;
+    /* margin: 0 10px; */
+    /* justify-content: space-between;
+    background-color: red; */
+    padding: 10px;
+    color: white;
+    margin-right: 1%;
+    font-family: "Inter";
+}
+.actions_users button:nth-child(1){
+    background-color: var(--main-color);
+}
+.actions_users button:nth-child(1) a{
+    color: white;
+}
+.actions_users button:nth-child(2){
+    background-color: var(--clr-unpaid-font);
+}

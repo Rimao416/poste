@@ -32,113 +32,89 @@ class Conge
 
     /**
      * @Groups({"conges_read","users_read"})
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date", nullable=true)
      */
-    private $DateDebut;
+    private $debutConge;
 
     /**
      * @Groups({"conges_read","users_read"})
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date", nullable=true)
      */
-    private $DateFin;
+    private $finConge;
 
     /**
      * @Groups({"conges_read","users_read"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $motif;
+    private $raison;
 
     /**
      * @Groups({"conges_read","users_read"})
-     * @ORM\Column(type="string", length=255,nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $file;
+    private $statut;
 
     /**
-     * @Groups({"conges_read","users_read"})
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $explication;
-
-    /**
-     * @Groups({"conges_read","users_read"})
+     * @Groups({"conges_read","users_read"})    
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="conges")
      */
     private $user;
 
     /**
      * @Groups({"conges_read","users_read"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $status;
-
-    /**
-     * @Groups({"conges_read","users_read"})
-     * @ORM\Column(type="date", nullable=true)
-     */
-    private $cree;
+    private $explication;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDateDebut(): ?\DateTimeInterface
+    public function getDebutConge(): ?\DateTimeInterface
     {
-        return $this->DateDebut;
+        return $this->debutConge;
     }
 
-    public function setDateDebut(\DateTimeInterface $DateDebut): self
+    public function setDebutConge(?\DateTimeInterface $debutConge): self
     {
-        $this->DateDebut = $DateDebut;
+        $this->debutConge = $debutConge;
 
         return $this;
     }
 
-    public function getDateFin(): ?\DateTimeInterface
+    public function getFinConge(): ?\DateTimeInterface
     {
-        return $this->DateFin;
+        return $this->finConge;
     }
 
-    public function setDateFin(\DateTimeInterface $DateFin): self
+    public function setFinConge(?\DateTimeInterface $finConge): self
     {
-        $this->DateFin = $DateFin;
+        $this->finConge = $finConge;
 
         return $this;
     }
 
-    public function getMotif(): ?string
+    public function getRaison(): ?string
     {
-        return $this->motif;
+        return $this->raison;
     }
 
-    public function setMotif(string $motif): self
+    public function setRaison(?string $raison): self
     {
-        $this->motif = $motif;
+        $this->raison = $raison;
 
         return $this;
     }
 
-    public function getFile(): ?string
+    public function getStatut(): ?string
     {
-        return $this->file;
+        return $this->statut;
     }
 
-    public function setFile(string $file): self
+    public function setStatut(?string $statut): self
     {
-        $this->file = $file;
-
-        return $this;
-    }
-
-    public function getExplication(): ?string
-    {
-        return $this->explication;
-    }
-
-    public function setExplication(?string $explication): self
-    {
-        $this->explication = $explication;
+        $this->statut = $statut;
 
         return $this;
     }
@@ -155,26 +131,14 @@ class Conge
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getExplication(): ?string
     {
-        return $this->status;
+        return $this->explication;
     }
 
-    public function setStatus(string $status): self
+    public function setExplication(?string $explication): self
     {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    public function getCree(): ?\DateTimeInterface
-    {
-        return $this->cree;
-    }
-
-    public function setCree(?\DateTimeInterface $cree): self
-    {
-        $this->cree = $cree;
+        $this->explication = $explication;
 
         return $this;
     }
